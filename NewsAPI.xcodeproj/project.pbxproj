@@ -13,6 +13,7 @@
 		22ABA3F12CA026950029E40E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 22ABA3F02CA026950029E40E /* Base */; };
 		22ABA3F32CA026960029E40E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22ABA3F22CA026960029E40E /* Assets.xcassets */; };
 		22ABA3F62CA026960029E40E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 22ABA3F52CA026960029E40E /* Base */; };
+		22ABA4042CA027030029E40E /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABA4032CA027030029E40E /* News.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		22ABA3F22CA026960029E40E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22ABA3F52CA026960029E40E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22ABA3F72CA026960029E40E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22ABA4032CA027030029E40E /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,56 @@
 		22ABA3E82CA026950029E40E /* NewsAPI */ = {
 			isa = PBXGroup;
 			children = (
-				22ABA3E92CA026950029E40E /* AppDelegate.swift */,
-				22ABA3EB2CA026950029E40E /* SceneDelegate.swift */,
-				22ABA3ED2CA026950029E40E /* ViewController.swift */,
-				22ABA3EF2CA026950029E40E /* Main.storyboard */,
+				22ABA4022CA026EE0029E40E /* Services */,
+				22ABA4002CA026D70029E40E /* Models */,
+				22ABA3FD2CA026B00029E40E /* App */,
+				22ABA3FE2CA026B90029E40E /* ViewControllers */,
+				22ABA3FF2CA026C80029E40E /* Storyboards */,
 				22ABA3F22CA026960029E40E /* Assets.xcassets */,
-				22ABA3F42CA026960029E40E /* LaunchScreen.storyboard */,
-				22ABA3F72CA026960029E40E /* Info.plist */,
 			);
 			path = NewsAPI;
+			sourceTree = "<group>";
+		};
+		22ABA3FD2CA026B00029E40E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				22ABA3E92CA026950029E40E /* AppDelegate.swift */,
+				22ABA3EB2CA026950029E40E /* SceneDelegate.swift */,
+				22ABA3F72CA026960029E40E /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		22ABA3FE2CA026B90029E40E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				22ABA3ED2CA026950029E40E /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		22ABA3FF2CA026C80029E40E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				22ABA3EF2CA026950029E40E /* Main.storyboard */,
+				22ABA3F42CA026960029E40E /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		22ABA4002CA026D70029E40E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22ABA4032CA027030029E40E /* News.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		22ABA4022CA026EE0029E40E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +183,7 @@
 			files = (
 				22ABA3EE2CA026950029E40E /* ViewController.swift in Sources */,
 				22ABA3EA2CA026950029E40E /* AppDelegate.swift in Sources */,
+				22ABA4042CA027030029E40E /* News.swift in Sources */,
 				22ABA3EC2CA026950029E40E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,12 +338,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H9XV7H58JV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsAPI/Info.plist;
+				INFOPLIST_FILE = NewsAPI/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,9 +351,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Chron1um.NewsAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,12 +370,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H9XV7H58JV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NewsAPI/Info.plist;
+				INFOPLIST_FILE = NewsAPI/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,9 +383,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Chron1um.NewsAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

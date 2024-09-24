@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsCellTableViewCell: UITableViewCell {
+final class NewsCellTableViewCell: UITableViewCell {
     
     @IBOutlet var newsImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!

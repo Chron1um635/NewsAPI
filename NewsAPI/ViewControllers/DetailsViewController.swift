@@ -7,23 +7,41 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
 
+    @IBOutlet var newsImageView: UIImageView!
+    
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var publishedAtLabel: UILabel!
+    
+    private let networkManager = NetworkManager.shared
+    
+    var news: Article!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        titleLabel.text = news.title
+        descriptionLabel.text = news.description
+        authorLabel.text = news.author
+        publishedAtLabel.text = news.publishedAt
+        
+        guard let imageUrl = URL(string: news.urlToImage ?? "") else { return }
+        networkManager.fetchImage(from: imageUrl) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let data):
+                newsImageView.image = UIImage(data: data)
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.newsImageView.image = UIImage(named: "noImage")
+                }
+                print(error)
+            }
+        }
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

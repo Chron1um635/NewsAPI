@@ -26,9 +26,8 @@ final class DetailsViewController: UIViewController {
         descriptionLabel.text = news.description
         authorLabel.text = news.author
         publishedAtLabel.text = news.publishedAt
-        
-        guard let imageUrl = URL(string: news.urlToImage ?? "") else { return }
-        networkManager.fetchImage(from: imageUrl) { [weak self] result in
+    
+        networkManager.fetchImage(from: news.urlToImage ?? "") { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let data):
@@ -40,6 +39,7 @@ final class DetailsViewController: UIViewController {
                 print(error)
             }
         }
+        newsImageView.layer.cornerRadius = newsImageView.frame.height / 2
     }
     
 

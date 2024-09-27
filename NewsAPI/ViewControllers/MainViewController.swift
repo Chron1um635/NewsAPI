@@ -42,15 +42,11 @@ extension MainViewController {
 // MARK: - Network
 private extension MainViewController {
     func fetchNews() {
-        guard let url = URL(string: "https://newsapi.org/v2/everything?q=tesla&from=2024-08-24&sortBy=publishedAt&apiKey=dfe5b2f4813e4781a9f27647aa6fd1a7") else { return }
-        networkManager.fetchNews(from: url) { [weak self] result in
-            guard let self else { return }
+        networkManager.fetchNews(from: Link.mainUrl.url) { [unowned self] result in
             switch result {
             case .success(let data):
                 news = data.articles
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                tableView.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -58,14 +54,11 @@ private extension MainViewController {
     }
     
     func fetchImage(index: Int, completion: @escaping(UIImage) -> Void ){
-        guard let url = URL(string: news[index].urlToImage ?? "") else { return}
-        networkManager.fetchImage(from: url) { result in
+        networkManager.fetchImage(from: news[index].urlToImage ?? "") { result in
             switch result {
             case .success(let data):
                 guard let image = UIImage(data: data) else { return }
-                DispatchQueue.main.async {
                     completion(image)
-                }
             case .failure(let error):
                 print(error)
             }

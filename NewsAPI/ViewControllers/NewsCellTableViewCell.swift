@@ -19,8 +19,7 @@ final class NewsCellTableViewCell: UITableViewCell {
     func configure(with news: Article) {
         titleLabel.text = news.title
         
-        guard let imageUrl = URL(string: news.urlToImage ?? "") else { return }
-        networkManager.fetchImage(from: imageUrl) {[weak self] result in
+        networkManager.fetchImage(from: news.urlToImage ?? "") {[weak self] result in
             guard let self else { return }
             switch result {
             case .success(let data):
@@ -32,6 +31,8 @@ final class NewsCellTableViewCell: UITableViewCell {
                 print(error)
             }
         }
+        newsImageView.layer.cornerRadius = newsImageView.frame.height / 2
     }
+    
 
 }

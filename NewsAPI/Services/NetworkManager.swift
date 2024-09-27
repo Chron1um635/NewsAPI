@@ -6,10 +6,17 @@
 //
 
 import Foundation
+import Alamofire
 
-enum NetworkError: String, Error {
-    case noData
-    case decodingError
+enum Link {
+    case mainUrl
+    
+    var url: URL {
+        switch self {
+        case .mainUrl:
+            return URL(string: "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=dfe5b2f4813e4781a9f27647aa6fd1a7")!
+        }
+    }
 }
 
 final class NetworkManager {
@@ -17,43 +24,31 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchNews(
-        from url: URL,
-        completion: @escaping(
-            Result<
-            News,
-            NetworkError
-            >
-        ) -> Void
-    ) {
-        URLSession.shared.dataTask(with: url) { data ,_, error in
-            guard let data else {
-                print(error ?? "No error description")
-                return
+    func fetchNews(from url: URL, completion: @escaping(Result<News, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let data):
+                    let news = News(news: data as? [String: Any])
+                    completion(.success(news))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
+                }
             }
-            do {
-                let news = try JSONDecoder().decode(News.self, from: data)
-                completion(.success(news))
-            } catch {
-                completion(.failure(.decodingError))
-            }
-        }.resume()
     }
     
-    func fetchImage(
-        from url: URL,
-        completion: @escaping(
-            Result<Data, NetworkError>
-        ) -> Void
-    ) {
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: url) else {
-                completion(.failure(.noData))
-                return
+    func fetchImage(from url: String, completion: @escaping(Result<Data, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { dataResponse in
+                switch dataResponse.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
-            DispatchQueue.main.async {
-                completion(.success(imageData))
-            }
-        }
     }
 }

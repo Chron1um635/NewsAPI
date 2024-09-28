@@ -24,13 +24,13 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchNews(from url: URL, completion: @escaping(Result<News, AFError>) -> Void) {
+    func fetchNews(from url: URL, completion: @escaping(Result<[News], AFError>) -> Void) {
         AF.request(url)
             .validate()
             .responseJSON { dataResponse in
                 switch dataResponse.result {
                 case .success(let data):
-                    let news = News(news: data as? [String: Any])
+                    let news = News.getNews(for: data)
                     completion(.success(news))
                 case .failure(let error):
                     print(error)

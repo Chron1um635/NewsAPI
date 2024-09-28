@@ -18,7 +18,7 @@ final class DetailsViewController: UIViewController {
     
     private let networkManager = NetworkManager.shared
     
-    var news: Article!
+    var news: News!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@ final class NewsCellTableViewCell: UITableViewCell {
     
     
 
-    func configure(with news: Article) {
+    func configure(with news: News) {
         titleLabel.text = news.title
         
         networkManager.fetchImage(from: news.urlToImage ?? "") {[weak self] result in

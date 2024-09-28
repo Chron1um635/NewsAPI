@@ -9,7 +9,7 @@ import UIKit
 
 final class MainViewController: UITableViewController {
     
-    private var news: [Article] = []
+    private var news: [News] = []
     private let networkManager = NetworkManager.shared
 
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ private extension MainViewController {
         networkManager.fetchNews(from: Link.mainUrl.url) { [unowned self] result in
             switch result {
             case .success(let data):
-                news = data.articles
+                news = data
                 tableView.reloadData()
             case .failure(let error):
                 print(error)

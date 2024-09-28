@@ -7,26 +7,6 @@
 
 
 struct News {
-    var articles: [Article]
-    
-    init(articles: [Article]) {
-        self.articles = articles
-    }
-    
-    init(news: [String: Any]?) {
-        self.articles = []
-        let articles = news?["articles"] as? [[String: Any]]
-        var someArticles: [Article] = []
-        articles?.forEach { article in
-            let art = Article(news: article)
-            someArticles.append(art)
-        }
-        self.articles.append(contentsOf: someArticles)
-    }
-    
-}
-
-struct Article {
     let source: Source
     let author: String?
     let title: String
@@ -44,6 +24,13 @@ struct Article {
         urlToImage = news["urlToImage"] as? String ?? ""
         publishedAt = news["publishedAt"] as? String ?? ""
     }
+    
+    static func getNews(for value: Any) -> [News] {
+        guard let newsDetails = value as? [String: Any] else { return [] }
+        guard let news = newsDetails["articles"] as? [[String: Any]] else { return [] }
+        return news.map {News(news: $0)}
+    }
+    
 }
 
 
